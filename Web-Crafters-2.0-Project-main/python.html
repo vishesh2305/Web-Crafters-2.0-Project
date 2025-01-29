@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Python - Education Website</title>
+    <style>
+        /* Root Variables */
+        :root {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --accent-color: #4eb7cf;
+            --btn-hover: #3a78c2;
+        }
+
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: var(--accent-color);
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--btn-hover);
+            border-radius: 5px;
+        }
+
+        /* Container Layout */
+        .container {
+            display: flex;
+            margin-top: 10px;
+            padding: 20px;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 20%;
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: var(--accent-color);
+            text-align: center;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: var(--btn-hover);
+        }
+
+        /* Main Content */
+        .content {
+            width: 75%;
+            margin-left: 5%;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .content h1 {
+            color: var(--accent-color);
+        }
+
+        .content p {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="navbar-main">
+            <ul id="ul-navbar">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Tutorials</a></li>
+                <li><a href="#">Exercises</a></li>
+                <li><a href="#">Certificates</a></li>
+                <li><a href="#">Services</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul>
+                <li><a href="#">Python Basics</a></li>
+                <li><a href="#">Data Types & Variables</a></li>
+                <li><a href="#">Control Flow</a></li>
+                <li><a href="#">Functions & Modules</a></li>
+                <li><a href="#">Object-Oriented Programming</a></li>
+                <li><a href="#">File Handling</a></li>
+                <li><a href="#">Error Handling</a></li>
+                <li><a href="#">Python Libraries</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <h1>Learn Python</h1>
+            <p>Python is a powerful and easy-to-learn programming language used for various applications such as web development, data science, and automation.</p>
+            <p>It is known for its simple syntax and readability, making it an excellent choice for beginners and professionals alike.</p>
+            <p>Here are some key topics you'll learn:</p>
+            <ul style="text-align: left; display: inline-block;">
+                <li>Python Syntax and Basics</li>
+                <li>Data Types and Variables</li>
+                <li>Control Flow (Loops and Conditionals)</li>
+                <li>Functions and Modules</li>
+                <li>Object-Oriented Programming (OOP)</li>
+                <li>Working with Files</li>
+                <li>Exception Handling</li>
+                <li>Popular Python Libraries</li>
+            </ul>
+            <p>Start your Python journey today and build amazing applications!</p>
+        </main>
+    </div>
+</body>
+</html>

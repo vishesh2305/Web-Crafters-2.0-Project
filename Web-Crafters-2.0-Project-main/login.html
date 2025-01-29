@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="./assets/css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="stylelog.css">
+
+</head>
+<body>
+    <!-- Background Video -->
+    <div class="background-video">
+        <video autoplay muted loop>
+            <source src="logbacknew.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <header class="header" id="header" data-header>
+        <a href="/" class="logo">
+            <img src="logo-png.png" alt="LRN">
+        </a>
+    </header>
+
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+        <form id="signupForm">
+            <h1>Create Account</h1>
+            
+            <div class="form-group">
+                <input type="text" id="signupUsername" placeholder="Username" required />
+                <div class="error-message" id="signupUsernameError"></div>
+            </div>
+            
+            <div class="form-group">
+                <input type="email" id="signupEmail" placeholder="Email" required />
+                <div class="error-message" id="signupEmailError"></div>
+            </div>
+
+            <div class="form-group password-container">
+                <input type="password" id="signupPassword" placeholder="Password" required />
+                <i id="toggleSignupPassword" class="fas fa-eye"></i>
+                <div class="password-strength">
+                    <div class="password-strength-bar" id="passwordStrengthBar"></div>
+                </div>
+                <div class="error-message" id="signupPasswordError"></div>
+            </div>
+
+            <div class="spinner" id="signupSpinner"></div>
+            <button type="submit" id="signupButton">Sign Up</button>
+            <div class="success-message" id="signupSuccess">Account created successfully!</div>
+        </form>
+    </div>
+
+    <div class="form-container sign-in-container">
+        <form id="loginForm">
+            <h1>Sign in</h1>
+            
+            <div class="form-group">
+                <input type="text" id="loginUsername" placeholder="Username" required />
+                <div class="error-message" id="loginUsernameError"></div>
+            </div>
+
+            <div class="form-group password-container">
+                <input type="password" id="loginPassword" placeholder="Password" required />
+                <i id="togglePassword" class="fas fa-eye"></i>
+                <div class="error-message" id="loginPasswordError"></div>
+            </div>
+
+            <div class="remember-me">
+                <input type="checkbox" id="rememberMe">
+                <label for="rememberMe">Remember me</label>
+            </div>
+
+            <div class="spinner" id="loginSpinner"></div>
+            <button type="submit" id="loginButton">Sign In</button>
+            <div class="success-message" id="loginSuccess">Login successful!</div>
+        </form>
+    </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start your journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       // Helper functions
+const $ = id => document.getElementById(id);
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+// Encryption helper
+const encryptionHelper = {
+    secret: 'your-secure-encryption-key',
+    
+    encrypt(text) {
+        const textToChars = text => text.split('').map(c => c.charCodeAt(0));
+        const byteHex = n => ("0" + Number(n).toString(16)).substr(-2);
+        const applySaltToChar = code => textToChars(this.secret).reduce((a,b) => a ^ b, code);
+
+        return text
+            .split('')
+            .map(textToChars)
+            .map(applySaltToChar)
+            .map(byteHex)
+            .join('');
+    },
+    
+    decrypt(encoded) {
+        const textToChars = text => text.split('').map(c => c.charCodeAt(0));
+        const applySaltToChar = code => textToChars(this.secret).reduce((a,b) => a ^ b, code);
+        
+        return encoded
+            .match(/.{1,2}/g)
+            .map(hex => parseInt(hex, 16))
+            .map(applySaltToChar)
+            .map(charCode => String.fromCharCode(charCode))
+            .join('');
+    }
+};
+
+// Validation functions
+const validators = {
+    email: email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
+    
+    password(password) {
+        const minLength = password.length >= 8;
+        const hasUpper = /[A-Z]/.test(password);
+        const hasLower = /[a-z]/.test(password);
+        const hasNumber = /\d/.test(password);
+        const hasSpecial = /[!@#$%^&*]/.test(password);
+        
+        let strength = 0;
+        if (minLength) strength++;
+        if (hasUpper) strength++;
+        if (hasLower) strength++;
+        if (hasNumber) strength++;
+        if (hasSpecial) strength++;
+        
+        return {
+            isValid: minLength && hasUpper && hasLower && hasNumber,
+            strength: (strength / 5) * 100
+        };
+    },
+    
+    username(username) {
+        return username.length >= 3 && /^[a-zA-Z0-9_-]+$/.test(username);
+    }
+};
+
+// User data management
+const userStorage = {
+    async getUsers() {
+        const users = localStorage.getItem('users');
+        return users ? JSON.parse(users) : [];
+    },
+    
+    async saveUsers(users) {
+        localStorage.setItem('users', JSON.stringify(users));
+        // Sync with external JSON file
+        try {
+            await fetch('/api/users/sync', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(users)
+            });
+        } catch (error) {
+            console.error('Error syncing users:', error);
+        }
+    },
+    
+    async addUser(userData) {
+        const users = await this.getUsers();
+        const existingUser = users.find(u => u.username === userData.username);
+        
+        if (existingUser) {
+            throw new Error('Username already exists');
+        }
+        
+        const encryptedUser = {
+            ...userData,
+            password: encryptionHelper.encrypt(userData.password)
+        };
+        
+        users.push(encryptedUser);
+        await this.saveUsers(users);
+    },
+    
+    async verifyUser(username, password) {
+        const users = await this.getUsers();
+        const user = users.find(u => u.username === username);
+        
+        if (!user) return false;
+        
+        const decryptedPassword = encryptionHelper.decrypt(user.password);
+        return decryptedPassword === password;
+    }
+};
+
+// UI feedback handlers
+const uiFeedback = {
+    showError(elementId, message) {
+        const errorElement = $(`${elementId}Error`);
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+        
+        const inputElement = $(elementId);
+        inputElement.classList.add('invalid');
+        inputElement.classList.remove('valid');
+    },
+    
+    clearError(elementId) {
+        const errorElement = $(`${elementId}Error`);
+        errorElement.style.display = 'none';
+        
+        const inputElement = $(elementId);
+        inputElement.classList.remove('invalid');
+    },
+    
+    showSuccess(elementId) {
+        const inputElement = $(elementId);
+        inputElement.classList.add('valid');
+        inputElement.classList.remove('invalid');
+    },
+    
+    updatePasswordStrength(strength) {
+        const strengthBar = $('passwordStrengthBar');
+        strengthBar.style.width = `${strength}%`;
+        
+        if (strength < 40) strengthBar.style.backgroundColor = '#ff4444';
+        else if (strength < 80) strengthBar.style.backgroundColor = '#ffd700';
+        else strengthBar.style.backgroundColor = '#00c851';
+    },
+    
+    setButtonLoading(button, isLoading) {
+        button.disabled = isLoading;
+        button.innerHTML = isLoading ? 
+            '<span class="spinner"></span> Processing...' : 
+            button.getAttribute('data-original-text');
+    }
+};
+
+// Form handlers
+const formHandlers = {
+    async handleSignup(e) {
+        e.preventDefault();
+        
+        const username = $('signupUsername').value;
+        const email = $('signupEmail').value;
+        const password = $('signupPassword').value;
+        const submitButton = $('signupButton');
+        
+        // Validate all fields
+        if (!validators.username(username)) {
+            uiFeedback.showError('signupUsername', 'Username must be at least 3 characters and contain only letters, numbers, underscore, or dash');
+            return;
+        }
+        
+        if (!validators.email(email)) {
+            uiFeedback.showError('signupEmail', 'Please enter a valid email address');
+            return;
+        }
+        
+        const passwordValidation = validators.password(password);
+        if (!passwordValidation.isValid) {
+            uiFeedback.showError('signupPassword', 'Password must be at least 8 characters with uppercase, lowercase, and numbers');
+            return;
+        }
+        
+        uiFeedback.setButtonLoading(submitButton, true);
+        
+        try {
+            await userStorage.addUser({ username, email, password });
+            
+            $('signupSuccess').style.display = 'block';
+            await sleep(1500);
+            container.classList.remove("right-panel-active");
+            
+            // Clear form
+            e.target.reset();
+        } catch (error) {
+            if (error.message === 'Username already exists') {
+                uiFeedback.showError('signupUsername', error.message);
+            } else {
+                alert('Signup failed. Please try again.');
+            }
+        } finally {
+            uiFeedback.setButtonLoading(submitButton, false);
+        }
+    },
+    
+    async handleLogin(e) {
+        e.preventDefault();
+        
+        const username = $('loginUsername').value;
+        const password = $('loginPassword').value;
+        const rememberMe = $('rememberMe').checked;
+        const submitButton = $('loginButton');
+        
+        uiFeedback.setButtonLoading(submitButton, true);
+        
+        try {
+            const isValid = await userStorage.verifyUser(username, password);
+            
+            if (isValid) {
+                if (rememberMe) {
+                    const rememberedUser = {
+                        username,
+                        password: encryptionHelper.encrypt(password)
+                    };
+                    localStorage.setItem('rememberedUser', JSON.stringify(rememberedUser));
+                } else {
+                    localStorage.removeItem('rememberedUser');
+                }
+                
+                $('loginSuccess').style.display = 'block';
+                await sleep(1000);
+                window.location.href = 'home.html';
+            } else {
+                uiFeedback.showError('loginPassword', 'Invalid username or password');
+            }
+        } catch (error) {
+            alert('Login failed. Please try again.');
+        } finally {
+            uiFeedback.setButtonLoading(submitButton, false);
+        }
+    }
+};
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', () => {
+    // Save original button text
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+        button.setAttribute('data-original-text', button.innerHTML);
+    });
+    
+    // Panel switch buttons
+    $('signUp').addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+    
+    $('signIn').addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
+    
+    // Form submissions
+    $('signupForm').addEventListener('submit', formHandlers.handleSignup);
+    $('loginForm').addEventListener('submit', formHandlers.handleLogin);
+    
+    // Real-time validation
+    $('signupUsername').addEventListener('input', function(e) {
+        const isValid = validators.username(e.target.value);
+        if (isValid) {
+            uiFeedback.showSuccess('signupUsername');
+            uiFeedback.clearError('signupUsername');
+        } else if (e.target.value) {
+            uiFeedback.showError('signupUsername', 'Username must be at least 3 characters and contain only letters, numbers, underscore, or dash');
+        }
+    });
+    
+    $('signupEmail').addEventListener('input', function(e) {
+        const isValid = validators.email(e.target.value);
+        if (isValid) {
+            uiFeedback.showSuccess('signupEmail');
+            uiFeedback.clearError('signupEmail');
+        } else if (e.target.value) {
+            uiFeedback.showError('signupEmail', 'Please enter a valid email address');
+        }
+    });
+    
+    $('signupPassword').addEventListener('input', function(e) {
+        const { isValid, strength } = validators.password(e.target.value);
+        uiFeedback.updatePasswordStrength(strength);
+        
+        if (isValid) {
+            uiFeedback.showSuccess('signupPassword');
+            uiFeedback.clearError('signupPassword');
+        } else if (e.target.value) {
+            uiFeedback.showError('signupPassword', 'Password must be at least 8 characters with uppercase, lowercase, and numbers');
+        }
+    });
+    
+    // Password visibility toggles
+    ['togglePassword', 'toggleSignupPassword'].forEach(id => {
+        $(id).addEventListener('click', function() {
+            const field = this.previousElementSibling;
+            const type = field.type === 'password' ? 'text' : 'password';
+            field.type = type;
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+    });
+    
+    // Load remembered user
+    const rememberedUser = localStorage.getItem('rememberedUser');
+    if (rememberedUser) {
+        const { username, password } = JSON.parse(rememberedUser);
+        $('loginUsername').value = username;
+        $('loginPassword').value = encryptionHelper.decrypt(password);
+        $('rememberMe').checked = true;
+    }
+});
+    </script>
+
+</body>
+</html>

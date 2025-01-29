@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRN-X (Learn-Create-Grow)</title>
+    <style>
+        :root {
+            --bg-color: #0d1b2a;
+            --text-color: #e0e1dd;
+            --accent-color: #1b263b;
+            --btn-hover: #415a77;
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary-blue: #778da9;
+            --secondary-blue: #3b6978;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            
+            font-family: 'Arial', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+    
+        }
+        header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    background: transparent; /* Remove solid background */
+}
+
+/* Navbar Styling */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 45%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-radius: 12px;
+    /* backdrop-filter: blur(10px); */
+    /* background: rgba(255, 255, 255, 0.1); */
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Navbar Brand */
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Navbar Links */
+.navbar .nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.navbar .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%);
+}
+
+.navbar .nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Mobile Menu (Hidden by default) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle div {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 5px;
+    transition: 0.3s;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 10px;
+        border-radius: 10px;
+        text-align: right;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+}
+
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .btn {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 10px;
+  color: #fafafa;
+  text-transform: uppercase;
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 2px solid #fafafa;
+  background: #252525;
+  box-shadow: 3px 3px #fafafa;
+  cursor: pointer;
+}
+
+.btn:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
+}
+
+
+.btn3 {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, #1b263b, #415a77);
+    color: #e0e1dd;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.btn3:hover {
+    background: linear-gradient(45deg, #415a77, #1b263b);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-4px);
+}
+
+.btn3:active {
+    transform: translateY(2px);
+}
+
+
+.btn2 {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 10px;
+  color: #000000;
+  text-transform: uppercase;
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 4px solid #525252;
+  background: #fbf5e5;
+  box-shadow: 3px 3px #707070;
+  cursor: pointer;
+}
+
+.btn2:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
+}
+
+.courses {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.course-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.course-banner img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+@media (max-width: 900px) {
+    .course-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Responsive breakpoint */
+@media (max-width: 900px) {
+    .course-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+    }
+}
+
+
+.course-banner {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+
+
+.course-tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--primary-blue);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.course-content {
+    padding: 1.5rem;
+}
+
+.course-category {
+    color: var(--primary-blue);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.course-meta {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.course-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-blue);
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.course-card:hover img {
+    transform: scale(1.05);
+}
+
+
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        #themeToggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .typewriter {
+            overflow: hidden;
+            /* border-right: 3px solid var(--primary-blue); */
+            white-space: nowrap;
+            margin: 0;
+            animation: blink 0.75s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary-blue); }
+        }
+
+
+        .nav-links.active {
+    display: flex;
+    animation: slideIn 0.3s ease-out;
+}
+
+.menu-toggle div {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.rotate-45 {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+
+.opacity-0 {
+    opacity: 0;
+}
+
+.rotate-neg-45 {
+    transform: rotate(-45deg) translate(5px, -6px);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tech-particle {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: #00ff88;
+    border-radius: 50%;
+    pointer-events: none;
+    transform-origin: center;
+    transition: transform 0.2s ease;
+    z-index: 9999;
+    mix-blend-mode: screen;
+    filter: blur(1px);
+    box-shadow: 0 0 8px currentColor;
+}
+
+@keyframes particleFade {
+    to {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <nav  class="navbar">
+            <div class="logo">
+                <img src="logo-png.png" alt="Brand Logo" style="height: 80px;">
+            </div>
+                        <div class="nav-links">
+                <a href="#"><button class="btn">𝙷𝙾𝙼𝙴</button></a>
+                <a href="aboutUs.html"><button class="btn">𝙰𝙱𝙾𝚄𝚃 𝚄𝚂</button></a>
+                <a href="contactUs.html"><button class="btn">𝙲𝙾𝙽𝚃𝙰𝙲𝚃 𝚄𝚂</button></a>
+                <a href="login.html"> <button class="btn">𝙻𝙾𝙶𝙸𝙽 / 𝚂𝙸𝙶𝙽𝚄𝙿</button></a>
+
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+
+
+        
+    </header>
+
+    <section class="hero">
+        <video autoplay muted loop>
+            <source src="landParticle.mp4" type="video/mp4">
+        </video>
+        <div class="particles"></div>
+
+        <div class="hero-content">
+            <h1 style="
+            font-size: 3.5rem; 
+            color: #fafafa; 
+            font-weight: bold; 
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #0a192f, #112240, #1c2541);
+            -webkit-background-clip: text;
+            letter-spacing: 3px;
+            text-shadow: 0px 0px 10px rgba(173, 216, 230, 0.8);
+            font-family: 'Orbitron', sans-serif;">
+            𝙇𝙍𝙉-𝙓
+        </h1><h2 style="
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        background: linear-gradient(135deg, #0a192f, #112240, #1c2541);
+        -webkit-background-clip: text;
+        letter-spacing: 2px;
+        text-shadow: 0px 0px 10px rgba(173, 216, 230, 0.8);
+        font-family: 'Orbitron', sans-serif;">
+        𝙴𝚖𝚙𝚘𝚠𝚎𝚛 𝚈𝚘𝚞𝚛 𝙻𝚎𝚊𝚛𝚗𝚒𝚗𝚐 𝙹𝚘𝚞𝚛𝚗𝚎𝚢
+    </h2>
+    
+    <p style="
+        font-size: 1.25rem;
+        color: #fafafa;
+        font-family: 'Orbitron', sans-serif;
+        text-shadow: 0px 0px 5px rgba(173, 216, 230, 0.6);
+        max-width: 800px;
+        line-height: 1.6;">
+        𝙹𝚘𝚒𝚗 𝚊 𝚠𝚘𝚛𝚕𝚍 𝚘𝚏 𝚔𝚗𝚘𝚠𝚕𝚎𝚍𝚐𝚎 𝚠𝚒𝚝𝚑 𝚎𝚡𝚙𝚎𝚛𝚝-𝚕𝚎𝚍 𝚌𝚘𝚞𝚛𝚜𝚎𝚜
+    </p>
+    
+           <br> <a href="login.html" class="btn3">Get Started</a>
+        </div>
+
+    </section>
+
+    <footer id="footer"></footer>
+
+    <script>
+
+
+        fetch('footer.html')
+                .then(response => response.text())
+                .then(data => document.getElementById('footer').innerHTML = data)
+                .catch(error => console.error('Error loading footer:', error));
+        
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menuBars = document.querySelectorAll('.menu-toggle div');
+            
+            // Toggle nav menu
+            navLinks.classList.toggle('active');
+            
+            // Animate menu bars
+            menuBars[0].classList.toggle('rotate-45');
+            menuBars[1].classList.toggle('opacity-0');
+            menuBars[2].classList.toggle('rotate-neg-45');
+        }
+                // Add before existing script
+        
+        class Typewriter {
+            constructor(element, text, delay = 100) {
+                this.element = element;
+                this.text = text;
+                this.delay = delay;
+                this.currentText = '';
+                this.letterIndex = 0;
+                this.element.classList.add('typewriter');
+            }
+        
+            type() {
+                if (this.letterIndex < this.text.length) {
+                    this.currentText += this.text.charAt(this.letterIndex);
+                    this.element.textContent = this.currentText;
+                    this.letterIndex++;
+                    setTimeout(() => this.type(), this.delay);
+                }
+            }
+        }
+        
+        // Initialize typewriter effects
+        document.addEventListener('DOMContentLoaded', () => {
+            const title = document.querySelector('.hero-content h1');
+            const subtitle = document.querySelector('.hero-content h2');
+            const description = document.querySelector('.hero-content p');
+        
+            // Store original text
+            const titleText = title.textContent;
+            const subtitleText = subtitle.textContent;
+            const descriptionText = description.textContent;
+        
+            // Clear text
+            title.textContent = '';
+            subtitle.textContent = '';
+            description.textContent = '';
+        
+            // Create and start typewriters with delays
+            setTimeout(() => {
+                new Typewriter(title, titleText, 150).type();
+            }, 0);
+        
+            setTimeout(() => {
+                new Typewriter(subtitle, subtitleText, 100).type();
+            }, 1500);
+        
+            setTimeout(() => {
+                new Typewriter(description, descriptionText, 50).type();
+            }, 3000);
+        });
+        
+                // Theme Toggle
+                const themeToggle = document.getElementById("themeToggle");
+                let darkMode = true;
+        
+                themeToggle.addEventListener("click", () => {
+                    darkMode = !darkMode;
+                    if (!darkMode) {
+                        document.documentElement.style.setProperty('--bg-color', '#e0e1dd');
+                        document.documentElement.style.setProperty('--text-color', '#0d1b2a');
+                        document.documentElement.style.setProperty('--accent-color', '#778da9');
+                        themeToggle.textContent = "☀️";
+                    } else {
+                        document.documentElement.style.setProperty('--bg-color', '#0d1b2a');
+                        document.documentElement.style.setProperty('--text-color', '#e0e1dd');
+                        document.documentElement.style.setProperty('--accent-color', '#1b263b');
+                        themeToggle.textContent = "🌙";
+                    }
+                });
+        
+                // Particle Effect
+                function createParticle() {
+                    const particles = document.querySelector('.particles');
+                    const particle = document.createElement('div');
+                    particle.style.position = 'absolute';
+                    particle.style.width = '2px';
+                    particle.style.height = '2px';
+                    particle.style.background = '#ffffff';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    particle.style.opacity = Math.random();
+                    particle.style.animation = `particle ${Math.random() * 2 + 1}s linear`;
+                    particles.appendChild(particle);
+                    setTimeout(() => particle.remove(), 3000);
+                }
+        
+          
+        // Add 3D tilt effect
+        document.querySelectorAll('.course-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'none';
+            });
+        });
+        
+        // Remove existing cursor trail code and replace with:
+        
+        class ParticleTrail {
+            constructor() {
+                this.particles = [];
+                this.mouseX = 0;
+                this.mouseY = 0;
+                this.init();
+            }
+        
+            init() {
+                document.addEventListener('mousemove', (e) => {
+                    this.mouseX = e.clientX;
+                    this.mouseY = e.clientY;
+                    this.createParticle();
+                });
+                this.animate();
+            }
+        
+            createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'tech-particle';
+                
+                // Random color variation
+                const colors = ['#00ff88', '#0066ff', '#ff0066'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                particle.style.left = this.mouseX + 'px';
+                particle.style.top = this.mouseY + 'px';
+                
+                document.body.appendChild(particle);
+                this.particles.push({
+                    element: particle,
+                    life: 1
+                });
+            }
+        
+            animate() {
+                for(let i = this.particles.length - 1; i >= 0; i--) {
+                    const particle = this.particles[i];
+                    particle.life -= 0.02;
+                    
+                    if(particle.life <= 0) {
+                        particle.element.remove();
+                        this.particles.splice(i, 1);
+                    } else {
+                        particle.element.style.opacity = particle.life;
+                        particle.element.style.transform = `scale(${particle.life})`;
+                    }
+                }
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+        
+        // Initialize the new cursor trail
+        const trail = new ParticleTrail();
+        
+        // Typing Animation
+        const titles = document.querySelectorAll('h1, h2');
+        titles.forEach(title => {
+            const text = title.textContent;
+            title.textContent = '';
+            let i = 0;
+            
+            function typeWriter() {
+                if (i < text.length) {
+                    title.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        typeWriter();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            observer.observe(title);
+        });
+        
+        // Ripple Effect
+        document.addEventListener('click', (e) => {
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            ripple.style.left = `${e.clientX}px`;
+            ripple.style.top = `${e.clientY}px`;
+            document.body.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 1000);
+        });
+        
+        // Add these styles to your existing CSS
+        const styles = document.createElement('style');
+        styles.textContent = `
+            .cursor-trail {
+                width: 20px;
+                height: 20px;
+                background: radial-gradient(circle, var(--primary-blue) 0%, transparent 70%);
+                position: fixed;
+                pointer-events: none;
+                z-index: 9999;
+                transform: translate(-50%, -50%);
+            }
+            
+            .ripple {
+                position: fixed;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(0);
+                animation: ripple 1s linear;
+                pointer-events: none;
+            }
+            
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes float {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-20px); }
+                100% { transform: translateY(0px); }
+            }
+            
+            .course-card {
+                transition: transform 0.3s ease;
+                animation: float 6s ease-in-out infinite;
+            }
+        `;
+        document.head.appendChild(styles);
+        
+            </script>
+        </body>
+        </html>

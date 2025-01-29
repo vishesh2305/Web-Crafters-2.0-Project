@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact us</title>
+    
+    <script src="https://kit.fontawesome.com/7ced901c3e.js" crossorigin="anonymous"></script>
+
+    <style>
+        :root {
+    --primary-color: #1b263b;
+    --secondary-color: #778da9;
+    --text-color: #e0e1dd;
+    --hover-color: #415a77;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background: #0d1b2a;
+}
+
+.footer-container {
+    background: var(--primary-color);
+    padding: 4rem 2rem 2rem;
+    color: var(--text-color);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.footer-section h3 {
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.hover-effect:hover {
+    color: var(--secondary-color);
+    transform: translateX(5px);
+}
+
+.newsletter {
+    margin-top: 1rem;
+}
+
+.subscribe-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.subscribe-form input {
+    padding: 0.8rem;
+    border: none;
+    border-radius: 4px;
+    flex: 1;
+}
+
+.btn-subscribe {
+    padding: 0.8rem 1.5rem;
+    background: var(--secondary-color);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-subscribe:hover {
+    background: var(--hover-color);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.social-links a {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--secondary-color);
+    transform: translateY(-5px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .subscribe-form {
+        flex-direction: column;
+    }
+}
+    </style>
+</head>
+<body>
+    <footer class="footer-container">
+        <div class="footer-content">
+            <!-- Quick Links Section -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="hover-effect">PLUS</a></li>
+                    <li><a href="#" class="hover-effect">SPACES</a></li>
+                    <li><a href="#" class="hover-effect">GET CERTIFIED</a></li>
+                    <li><a href="#" class="hover-effect">FOR TEACHERS</a></li>
+                    <li><a href="#" class="hover-effect">FOR BUSINESS</a></li>
+                </ul>
+            </div>
+
+            <!-- Tutorials Section -->
+            <div class="footer-section">
+                <h3>Top Tutorials</h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="hover-effect">HTML Tutorial</a></li>
+                    <li><a href="#" class="hover-effect">CSS Tutorial</a></li>
+                    <li><a href="#" class="hover-effect">JavaScript Tutorial</a></li>
+                    <li><a href="#" class="hover-effect">Python Tutorial</a></li>
+                    <li><a href="#" class="hover-effect">SQL Tutorial</a></li>
+                </ul>
+            </div>
+
+            <!-- References Section -->
+            <div class="footer-section">
+                <h3>Top References</h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="hover-effect">HTML Reference</a></li>
+                    <li><a href="#" class="hover-effect">CSS Reference</a></li>
+                    <li><a href="#" class="hover-effect">JavaScript Reference</a></li>
+                    <li><a href="#" class="hover-effect">Python Reference</a></li>
+                    <li><a href="#" class="hover-effect">SQL Reference</a></li>
+                </ul>
+            </div>
+
+            <!-- Newsletter Section -->
+            <div class="footer-section">
+                <h3>Stay Updated</h3>
+                <div class="newsletter">
+                    <p>Subscribe to our newsletter</p>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit" class="btn-subscribe">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Media Links -->
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 CyberLearn. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn PHP - Education Platform</title>
+    <style>
+        /* Root Variables */
+        :root {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --accent-color: #4eb7cf;
+            --btn-hover: #3a78c2;
+        }
+
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: var(--accent-color);
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--btn-hover);
+            border-radius: 5px;
+        }
+
+        /* Container Layout */
+        .container {
+            display: flex;
+            margin-top: 10px;
+            padding: 20px;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 20%;
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: var(--accent-color);
+            text-align: center;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: var(--btn-hover);
+        }
+
+        /* Main Content */
+        .content {
+            width: 75%;
+            margin-left: 5%;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .content h1 {
+            color: var(--accent-color);
+        }
+
+
+
+
+            :root {
+                --bg-color: #121212;
+                --text-color: #ffffff;
+                --accent-color: #4eb7cf;
+                --btn-hover: #3a78c2;
+            }
+    
+            * {
+                margin: 0;
+                padding: 0;
+                text-decoration: none;
+                color: var(--text-color);
+                font-family: Arial, sans-serif;
+            }
+    
+            body {
+                background-color: var(--bg-color);
+            }
+    
+            header {
+                width: 100vw;
+                height: max-content;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-evenly;
+            }
+    
+            #navbar-main {
+                border: 1px solid var(--accent-color);
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                padding: 10px 0;
+                background-color: var(--bg-color);
+            }
+    
+            #navbar-main > figure {
+                height: 2em;
+                width: 2em;
+            }
+    
+            #ul-navbar {
+                display: flex;
+                width: 60%;
+                align-items: center;
+                justify-content: space-evenly;
+                list-style-type: none;
+            }
+    
+            #ul-navbar > li {
+                cursor: pointer;
+            }
+    
+            #ul-navbar > li:hover {
+                color: var(--accent-color);
+            }
+    
+            #searchbar {
+                width: 20%;
+                height: 2em;
+                padding: 5px;
+                border: 1px solid var(--accent-color);
+                background-color: var(--bg-color);
+                color: var(--text-color);
+            }
+    
+            #span-header {
+                border: 1px solid var(--accent-color);
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: var(--bg-color);
+            }
+    
+            #ul-navbar-2 {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                list-style-type: none;
+            }
+    
+            #ul-navbar-2 > li {
+                cursor: pointer;
+                list-style-type: none;
+                padding: 10px;
+            }
+    
+            #ul-navbar-2 > li:hover {
+                color: var(--btn-hover);
+            }
+        
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Main Navbar -->
+    <header>
+        <nav id="navbar-main">
+
+            <figure>
+                <img src="" alt="logo">
+            </figure>
+
+            <ul id="ul-navbar">
+                <li>Tutorials</li>
+                <li>Exercises</li>
+                <li>Certificates</li>
+                <li>Services</li>
+                <li>For Teachers</li>
+            </ul>
+
+            <input type="search" name="" placeholder="Search" id="searchbar">
+
+        </nav>
+
+        <span id="span-header">
+            <ul id="ul-navbar-2">
+                <li><a href="html.html">HTML</a></li>
+                <li><a href="css.html">CSS</a></li>
+                <li><a href="javascript.html">JAVASCRIPT</a></li>
+                <li><a href="sql.html">SQL</a></li>
+                <li><a href="python.html">PYTHON</a></li>
+                <li><a href="java.html">JAVA</a></li>
+                <li><a href="php.html">PHP</a></li>
+                <li><a href="computerbasics.html">COMPUTER BASICS</a></li>
+                <li><a href="django.html">DJANGO</a></li>
+                <li><a href="react.html">REACT</a></li>
+            </ul>
+        </span>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar" style="margin: 5px;">
+            <ul>
+                <li style="margin: 5px;"><a href="#">Introduction to PHP</a></li>
+                <li style="margin: 5px;"><a href="#">Variables & Data Types</a></li>
+                <li style="margin: 5px;"><a href="#">Control Structures</a></li>
+                <li style="margin: 5px;"><a href="#">Functions in PHP</a></li>
+                <li style="margin: 5px;"><a href="#">PHP & Databases</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content" style="margin: 5px;">
+            <h1 style="margin: 5px;">Learn PHP Programming</h1>
+            <p style="margin: 5px;">PHP is a popular server-side scripting language for web development. Start learning the fundamentals and build powerful web applications.</p>
+            <h2 style="margin: 5px;">What is PHP?</h2>
+            <p style="margin: 5px;">PHP (Hypertext Preprocessor) is an open-source scripting language designed for web development and can be embedded in HTML.</p>
+            
+            <h2 style="margin: 5px;">Basic PHP Syntax</h2>
+<pre style="background-color:#333;padding:10px;border-radius:5px;color:#fff;text-align:left; margin: 5px;">
+                &lt;?php
+                echo "Hello, World!";
+                ?&gt;
+            </pre>
+            <p>This simple script outputs "Hello, World!" on a webpage.</p>
+        </main>
+    </div>
+
+</body>
+</html>

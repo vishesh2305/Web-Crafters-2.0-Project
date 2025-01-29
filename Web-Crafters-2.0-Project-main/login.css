@@ -1,0 +1,173 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    text-decoration: none;
+}
+
+body::-webkit-scrollbar{
+    display: none;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+
+}
+header{
+    border:1px solid black;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0px;
+}
+#header-span{
+    display: flex;
+    width: 60%;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+main{
+    display: flex;
+}
+#left-container{
+    width: 40%;
+    height: 100%;
+    display: grid;
+    justify-content: space-evenly;
+}
+
+
+#left-section-inside-main{
+    margin-top: 4em;
+    width: 50%;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#webpage-logo-container-inside-main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#promo-text-inside-main{
+    display: grid;
+}
+
+
+#right-section-inside-main{
+    margin-top: 4em;
+    width: 50%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#login-box-container{
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    border: 1px solid black;
+    border: 0px;
+    padding: 1em;
+    box-shadow: rgba(0, 0, 0, 0.36) 0px 1px 4px;    border-radius: 10px;
+}
+#login-text{
+    align-self: flex-start;
+    justify-self: flex-start;
+    padding: 2em;
+}
+#login-form{
+    display: flex;
+    flex-direction: column;
+    padding: 4em;
+
+}
+.login-form-elements{
+    width: 25em;
+    height: 2.5em;
+    outline: none;
+    padding: 10px;
+    margin-bottom: 1em;
+    border: 0px;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.4);
+    border-radius: 10px;
+    cursor: pointer;
+}
+#login-submit-btn{
+    font-weight: 600;
+    width: 25em;
+    align-self: center;
+    height: 2.5em;
+    outline: none;
+    border: 0px;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.4);
+    border-radius: 10px;
+    cursor: pointer;
+}
+#forget-passwd{
+    align-self: center;
+    margin-top: 2em;
+}
+
+
+
+
+#signup-box-container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border: 0px;
+    padding: 1em;
+    box-shadow: rgba(0, 0, 0, 0.36) 0px 1px 4px;    border-radius: 10px;
+}
+#signup-text{
+    align-self: flex-start;
+    justify-self: flex-start;
+    padding: 2em;
+}
+#signup-form{
+    display: flex;
+    flex-direction: column;
+    padding: 0em 4em;
+
+}
+.signup-form-elements{
+    width: 25em;
+    height: 2.5em;
+    outline: none;
+    padding: 10px;
+    margin-bottom: 1em;
+    border: 0px;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.4);
+    border-radius: 10px;
+    cursor: pointer;
+}
+#signup-submit-btn{
+    font-weight: 600;
+    width: 25em;
+    align-self: center;
+    height: 2.5em;
+    outline: none;
+    border: 0px;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.4);
+    border-radius: 10px;
+    cursor: pointer;
+}
+#forget-passwd{
+    align-self: center;
+    margin-top: 2em;
+}
+#login-link{
+    margin-top: 2em;
+    align-self: center;
+}

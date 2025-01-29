@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    /* background-color: #dbe6f6; */
+    background: rgb(148,181,208);
+background: linear-gradient(90deg, rgba(148,181,208,1) 0%, rgba(111,153,163,1) 35%, rgba(19,107,126,1) 100%);
+    color: #333;
+}
+
+.contact-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 60px 60px;
+    align-items: center;
+    max-width: 1200px;
+    height: 600px;
+    margin: auto;
+}
+
+.contact-info {
+    flex: 1;
+    padding-right: 40px;
+}
+
+.contact-info h1 {
+    color: #000000;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+.contact-info ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 40px;
+}
+
+.contact-info ul li {
+    font-size: 1.2em;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.image-placeholder {
+    margin-bottom: 20px;
+}
+
+.image-placeholder img {
+    max-width: 400px;
+    border-radius: 30px;
+    box-shadow: 10px 14px 18px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.contact-form {
+    flex: 1;
+    background-color: #333e4b;
+    padding: 40px;
+    border-radius: 10px;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    height: 600px;
+}
+
+.contact-form .input-group {
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+}
+
+.contact-form input, .contact-form select, .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+    color: #333;
+}
+
+.contact-form textarea {
+    height: 60px;
+    resize: none;
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3;
+}
+    </style>>
+
+</head>
+<body>
+    <section class="contact-section">
+        
+        <div class="contact-info">
+            <h1>CONTACT US</h1>
+            <p>Contact us for more information about your Property</p>
+            <ul>
+                <li> 9501580144
+                </li>
+                <li> amrit1604.be23@chitkara.edu.in</li>
+            </ul>
+            <div class="image-placeholder">
+                <img src="https://unblast.com/wp-content/uploads/2020/09/Contact-Us-Vector-Illustration-Part-02-1.jpg" alt="Team Image">
+            </div>
+        </div>
+        
+        <div class="contact-form">
+            <form>
+                <div class="input-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" placeholder="Full Name">
+                </div>
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Email Address">
+                </div>
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Phone Number">
+                </div>
+                <div class="input-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" placeholder="Location">
+                </div>
+                <div class="input-group">
+                    <label for="expertise">Which Topic related issue you are facing</label>
+                    <select id="expertise">
+                        <option value="Finance">Finance</option>
+                        <option value="consulting">Rental</option>
+                        <option value="Stocks">Bidding</option>
+                        <option value="Stocks">Sale</option>
+                        <option value="Stocks">Renovation</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="message">Tell Us About Your Issue</label>
+                    <textarea id="message" placeholder="Leave your message here"></textarea>
+                </div>
+                <button type="submit">Submit </button>
+            </form>
+        </div>
+    
+    </section>
+</body>
+</html>

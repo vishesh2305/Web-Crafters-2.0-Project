@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRN-X (Learn-Create-Grow)</title>
+    <style>
+        :root {
+            --bg-color: #0a0a1f;
+            --text-color: #e0e0ff;
+            --accent-color: #00d9ff;
+            --accent-glow: #00d9ff80;
+            --neon-purple: #bf00ff;
+            --neon-blue: #0055ff;
+            --chat-bg: rgba(10, 10, 31, 0.8);
+            --message-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            color: var(--text-color);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            
+            font-family: 'Arial', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+    
+        }
+
+
+
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 10px;
+  color: #fafafa;
+  text-transform: uppercase;
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 2px solid #fafafa;
+  background: #252525;
+  box-shadow: 3px 3px #fafafa;
+  cursor: pointer;
+}
+
+.btn:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
+}
+
+
+.btn3 {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, #1b263b, #415a77);
+    color: #e0e1dd;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.btn3:hover {
+    background: linear-gradient(45deg, #415a77, #1b263b);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-4px);
+}
+
+.btn3:active {
+    transform: translateY(2px);
+}
+
+
+
+.btn2 {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 10px;
+  color: #000000;
+  text-transform: uppercase;
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 4px solid #525252;
+  background: #fbf5e5;
+  box-shadow: 3px 3px #707070;
+  cursor: pointer;
+}
+
+.btn2:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
+}
+
+.courses-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            position: relative;
+        }
+
+        .course-card {
+            background: black;
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px var(--neon-blue);
+        }
+
+        .course-banner {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .course-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .course-card:hover .course-banner img {
+            transform: scale(1.1);
+        }
+
+        .course-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--cyber-purple);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            animation: glowTag 2s infinite;
+        }
+
+        .course-content {
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .course-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--neon-blue), var(--tech-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .course-stats {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .price-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--tech-green);
+        }
+
+        .cart-btn {
+            background: linear-gradient(45deg, var(--cyber-purple), var(--neon-blue));
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .cart-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        /* Shopping Cart Styles */
+        .cart-icon {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--glass-bg);
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            border: 1px solid var(--glass-border);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--tech-green);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: var(--deep-blue);
+            border-left: 1px solid var(--glass-border);
+            padding: 2rem;
+            transition: right 0.3s ease;
+            z-index: 1000;
+        }
+
+        .cart-modal.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .cart-items {
+            max-height: calc(100vh - 250px);
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .cart-total {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: linear-gradient(45deg, var(--cyber-purple), var(--neon-blue));
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        @keyframes glowTag {
+            0%, 100% { box-shadow: 0 0 5px var(--cyber-purple); }
+            50% { box-shadow: 0 0 20px var(--cyber-purple); }
+        }
+
+        /* Checkout Form Styles */
+        .checkout-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--deep-blue);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            width: 90%;
+            max-width: 500px;
+            z-index: 1001;
+            display: none;
+        }
+
+        .checkout-modal.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 5px;
+            background: var(--glass-bg);
+            color: white;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            display: none;
+        }
+
+        .modal-overlay.active {
+            display: block;
+        }
+
+
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        #themeToggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .typewriter {
+            overflow: hidden;
+            /* border-right: 3px solid var(--primary-blue); */
+            white-space: nowrap;
+            margin: 0;
+            animation: blink 0.75s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary-blue); }
+        }
+
+
+        .nav-links.active {
+    display: flex;
+    animation: slideIn 0.3s ease-out;
+}
+
+.menu-toggle div {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.rotate-45 {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+
+.opacity-0 {
+    opacity: 0;
+}
+
+.rotate-neg-45 {
+    transform: rotate(-45deg) translate(5px, -6px);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+header {
+    background: linear-gradient(135deg, var(--bg-color), #000033);
+
+            width: 100%;
+            position: relative;
+        }
+
+        #navbar-main {
+            background: rgba(10, 10, 31, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent-color);
+            border-left: none;
+            border-right: none;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1000;
+            text-decoration: none;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            height: 3em;
+            width: 3em;
+            background: linear-gradient(45deg, var(--accent-color), var(--neon-purple));
+            border-radius: 50%;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+
+        .logo::after {
+            content: '{ }';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 var(--accent-glow); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 217, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 217, 255, 0); }
+        }
+
+        #ul-navbar {
+            display: flex;
+            gap: 2rem;
+            list-style-type: none;
+        }
+
+        #ul-navbar > li {
+            cursor: pointer;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        #ul-navbar > li::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        #ul-navbar > li:hover::before {
+            width: 100%;
+        }
+
+        #ul-navbar > li:hover {
+            color: var(--accent-color);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        #searchbar {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--accent-color);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            width: 250px;
+            transition: all 0.3s ease;
+        }
+
+        #searchbar:focus {
+            outline: none;
+            box-shadow: 0 0 15px var(--accent-glow);
+            width: 300px;
+        }
+
+        #span-header {
+            background: rgba(10, 10, 31, 0.6);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid var(--accent-color);
+            display: block;
+            position: relative;
+        }
+
+        #ul-navbar-2 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem;
+            list-style: none;
+        }
+
+        #ul-navbar-2 > li {
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        #ul-navbar-2 > li > a {
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        #ul-navbar-2 > li > a::before {
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+        }
+
+        #ul-navbar-2 > li:nth-child(1) > a::before { content: '\f13b'; }
+        #ul-navbar-2 > li:nth-child(2) > a::before { content: '\f38b'; }
+        #ul-navbar-2 > li:nth-child(3) > a::before { content: '\f3b8'; }
+        #ul-navbar-2 > li:nth-child(4) > a::before { content: '\f1c0'; }
+        #ul-navbar-2 > li:nth-child(5) > a::before { content: '\f3e2'; }
+        #ul-navbar-2 > li:nth-child(6) > a::before { content: '\f4e4'; }
+        #ul-navbar-2 > li:nth-child(7) > a::before { content: '\f457'; }
+        #ul-navbar-2 > li:nth-child(8) > a::before { content: '\f108'; }
+        #ul-navbar-2 > li:nth-child(9) > a::before { content: '\f3b2'; }
+        #ul-navbar-2 > li:nth-child(10) > a::before { content: '\f41b'; }
+
+        #ul-navbar-2 > li > a:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px var(--accent-glow);
+            background: rgba(0, 217, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+       
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #navbar-main {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            #ul-navbar {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            #searchbar {
+                width: 100%;
+            }
+
+            #searchbar:focus {
+                width: 100%;
+            }
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="navbar-main">
+            <div class="logo-container">
+                <div class="logo"></div>
+                <h1>LRN-X</h1>
+            </div>
+
+            <ul id="ul-navbar">
+                <li><a href="comm.html"><i class="fas fa-book-reader"></i> Community</a></li>
+                <li><a href="exercises.html"><i class="fas fa-laptop-code"></i> Exercises</a></li>
+                <li><a href="certificates.html"><i class="fas fa-certificate"></i> Certificates</a></li>
+                <li><a href="services.html"><i class="fas fa-cogs"></i> Services</a></li>
+                <li><a href="teachers.html"><i class="fas fa-chalkboard-teacher"></i> For Teachers</a></li>
+            </ul>
+            
+
+            <input type="search" placeholder="Search knowledge..." id="searchbar">
+        </nav>
+
+        <span id="span-header">
+            <ul id="ul-navbar-2">
+                <li><a href="html.html">HTML</a></li>
+                <li><a href="css.html">CSS</a></li>
+                <li><a href="javascript.html">JAVASCRIPT</a></li>
+                <li><a href="sql.html">SQL</a></li>
+                <li><a href="python.html">PYTHON</a></li>
+                <li><a href="java.html">JAVA</a></li>
+                <li><a href="php.html">PHP</a></li>
+                <li><a href="computerbasics.html">COMPUTER BASICS</a></li>
+                <li><a href="django.html">DJANGO</a></li>
+                <li><a href="react.html">REACT</a></li>
+            </ul>
+        </span>
+    </header>
+
+
+    
+    <!-- Embedding main.html under the navbar -->
+     <!-- <div  class="head2">
+        <iframe src="main2.html" name="contentFrame" width="100%" height="100px" style="border: none;"></iframe>
+    </div> -->
+    
+
+    <section class="hero">
+        <video autoplay muted loop>
+            <source src="land2.mp4" type="video/mp4">
+        </video>
+        <div class="particles"></div>
+
+        <div class="hero-content">
+            <h1 style="
+            font-size: 3.5rem; 
+            color: #fafafa; 
+            font-weight: bold; 
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #0a192f, #112240, #1c2541);
+            -webkit-background-clip: text;
+            letter-spacing: 3px;
+            text-shadow: 0px 0px 10px rgba(173, 216, 230, 0.8);
+            font-family: 'Orbitron', sans-serif;">
+            𝙇𝙍𝙉-𝙓
+        </h1><h2 style="
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        background: linear-gradient(135deg, #0a192f, #112240, #1c2541);
+        -webkit-background-clip: text;
+        letter-spacing: 2px;
+        text-shadow: 0px 0px 10px rgba(173, 216, 230, 0.8);
+        font-family: 'Orbitron', sans-serif;">
+        𝙴𝚖𝚙𝚘𝚠𝚎𝚛 𝚈𝚘𝚞𝚛 𝙻𝚎𝚊𝚛𝚗𝚒𝚗𝚐 𝙹𝚘𝚞𝚛𝚗𝚎𝚢
+    </h2>
+    
+    <p style="
+        font-size: 1.25rem;
+        color: #fafafa;
+        font-family: 'Orbitron', sans-serif;
+        text-shadow: 0px 0px 5px rgb(5, 192, 255);
+        max-width: 800px;
+        line-height: 1.6;">
+        𝙹𝚘𝚒𝚗 𝚊 𝚠𝚘𝚛𝚕𝚍 𝚘𝚏 𝚔𝚗𝚘𝚠𝚕𝚎𝚍𝚐𝚎 𝚠𝚒𝚝𝚑 𝚎𝚡𝚙𝚎𝚛𝚝-𝚕𝚎𝚍 𝚌𝚘𝚞𝚛𝚜𝚎𝚜
+    </p>
+    
+           <br> <a href="main.html"  class="btn3">Get Started</a>
+        </div>
+
+    </section>
+
+    <div class="courses-container">
+        <div class="course-grid">
+            <!-- Course cards will be dynamically added here -->
+        </div>
+    </div>
+    
+    <!-- Cart Icon -->
+    <div style="background-color: #000033;" class="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+        <span style="margin-top: 10px; margin-right: 11px;"class="cart-count">0</span>
+    </div>
+    
+    <!-- Cart Modal -->
+    <div style="background-color: #000033;" class="cart-modal">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart">×</button>
+        </div>
+        <div  class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-total">
+            <h3>Total: Rs.<span id="cart-total-amount">0</span></h3>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+    
+    <!-- Checkout Modal -->
+    <div style="background-color: #00008c;" class="checkout-modal">
+        <h2>Checkout</h2>
+        <form id="checkout-form">
+            <div class="form-group">
+                <label>Card Number</label>
+                <input type="text" placeholder="1234 5678 9012 3456" required>
+            </div>
+            <div class="form-group">
+                <label>Expiry Date</label>
+                <input type="text" placeholder="MM/YY" required>
+            </div>
+            <div class="form-group">
+                <label>CVV</label>
+                <input type="text" placeholder="123" required>
+            </div>
+            <button type="submit" class="checkout-btn">Complete Purchase</button>
+        </form>
+    </div>
+    
+    <div class="modal-overlay"></div>
+    <footer id="footer"></footer>
+
+    <script>
+
+
+const courses = [
+    {
+        id: 1,
+        title: "Full Stack Web Development",
+        category: "Development",
+        price: 89.99,
+        image: "https://vtricks.in/lms/public/frontend/infixlmstheme/img/blog/full-stack-web-development.jpg", // Replace with actual image URL
+        tag: "Bestseller",
+        rating: 4.8,
+        students: "12k",
+        duration: "48 hours"
+    },
+
+    {
+        id: 2,
+        title: "Python Programming",
+        category: "Programming",
+        price: 79.99,
+        image: "https://sourcebae.com/blog/wp-content/uploads/2023/09/Top-youTube-channels-on-python-programming.jpg",
+        tag: "Popular",
+        rating: 4.9,
+        students: "8k",
+        duration: "36 hours"
+    },
+    // Add more courses as needed
+];
+
+// Cart functionality
+let cart = [];
+
+function initializeCourses() {
+    const courseGrid = document.querySelector('.course-grid');
+    courseGrid.innerHTML = courses.map(course => `
+        <div class="course-card">
+            <div class="course-banner">
+                <img src="${course.image}" alt="${course.title}">
+                <span class="course-tag">${course.tag}</span>
+            </div>
+            <div class="course-content">
+                <h3 class="course-title">${course.title}</h3>
+                <div class="course-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-star"></i>
+                        <span>${course.rating}</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <span>${course.students} students</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-clock"></i>
+                        <span>${course.duration}</span>
+                    </div>
+                </div>
+                <div class="price-section">
+                    <span class="price">$${course.price}</span>
+                    <button class="cart-btn" onclick="addToCart(${course.id})">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function addToCart(courseId) {
+    const course = courses.find(c => c.id === courseId);
+    if (course) {
+        cart.push(course);
+        updateCartCount();
+        updateCartItems();
+    }
+}
+
+function updateCartCount() {
+    const cartCount = document.querySelector('.cart-count');
+    cartCount.textContent = cart.length;
+}
+
+function updateCartItems() {
+    const cartItems = document.querySelector('.cart-items');
+    cartItems.innerHTML = cart.map(item => `
+        <div class="cart-item">
+            <img src="${item.image}" alt="${item.title}">
+            <div>
+                <h4>${item.title}</h4>
+                <p>$${item.price}</p>
+            </div>
+        </div>
+    `).join('');
+    
+    updateCartTotal();
+}
+
+function updateCartTotal() {
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    document.getElementById('cart-total-amount').textContent = total.toFixed(2);
+}
+
+// Modal functionality
+document.querySelector('.cart-icon').addEventListener('click', () => {
+    document.querySelector('.cart-modal').classList.add('active');
+});
+
+document.querySelector('.close-cart').addEventListener('click', () => {
+    document.querySelector('.cart-modal').classList.remove('active');
+});
+
+document.querySelector('.checkout-btn').addEventListener('click', () => {
+    document.querySelector('.checkout-modal').classList.add('active');
+    document.querySelector('.modal-overlay').classList.add('active');
+});
+
+document.querySelector('.modal-overlay').addEventListener('click', () => {
+    document.querySelector('.checkout-modal').classList.remove('active');
+    document.querySelector('.modal-overlay').classList.remove('active');
+});
+
+document.getElementById('checkout-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    // Add payment processing logic here
+    alert('Purchase successful! Thank you for your order.');
+    cart = [];
+    updateCartCount();
+    updateCartItems();
+    document.querySelector('.checkout-modal').classList.remove('active');
+    document.querySelector('.modal-overlay').classList.remove('active');
+    document.querySelector('.cart-modal').classList.remove('active');
+});
+
+// Initialize the page
+initializeCourses();
+
+
+fetch('footer.html')
+        .then(response => response.text())
+        .then(data => document.getElementById('footer').innerHTML = data)
+        .catch(error => console.error('Error loading footer:', error));
+
+function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menuBars = document.querySelectorAll('.menu-toggle div');
+    
+    // Toggle nav menu
+    navLinks.classList.toggle('active');
+    
+    // Animate menu bars
+    menuBars[0].classList.toggle('rotate-45');
+    menuBars[1].classList.toggle('opacity-0');
+    menuBars[2].classList.toggle('rotate-neg-45');
+}
+        // Add before existing script
+
+class Typewriter {
+    constructor(element, text, delay = 100) {
+        this.element = element;
+        this.text = text;
+        this.delay = delay;
+        this.currentText = '';
+        this.letterIndex = 0;
+        this.element.classList.add('typewriter');
+    }
+
+    type() {
+        if (this.letterIndex < this.text.length) {
+            this.currentText += this.text.charAt(this.letterIndex);
+            this.element.textContent = this.currentText;
+            this.letterIndex++;
+            setTimeout(() => this.type(), this.delay);
+        }
+    }
+}
+
+// Initialize typewriter effects
+document.addEventListener('DOMContentLoaded', () => {
+    const title = document.querySelector('.hero-content h1');
+    const subtitle = document.querySelector('.hero-content h2');
+    const description = document.querySelector('.hero-content p');
+
+    // Store original text
+    const titleText = title.textContent;
+    const subtitleText = subtitle.textContent;
+    const descriptionText = description.textContent;
+
+    // Clear text
+    title.textContent = '';
+    subtitle.textContent = '';
+    description.textContent = '';
+
+    // Create and start typewriters with delays
+    setTimeout(() => {
+        new Typewriter(title, titleText, 150).type();
+    }, 0);
+
+    setTimeout(() => {
+        new Typewriter(subtitle, subtitleText, 100).type();
+    }, 1500);
+
+    setTimeout(() => {
+        new Typewriter(description, descriptionText, 50).type();
+    }, 3000);
+});
+
+        // Theme Toggle
+        const themeToggle = document.getElementById("themeToggle");
+        let darkMode = true;
+
+        themeToggle.addEventListener("click", () => {
+            darkMode = !darkMode;
+            if (!darkMode) {
+                document.documentElement.style.setProperty('--bg-color', '#e0e1dd');
+                document.documentElement.style.setProperty('--text-color', '#0d1b2a');
+                document.documentElement.style.setProperty('--accent-color', '#778da9');
+                themeToggle.textContent = "☀️";
+            } else {
+                document.documentElement.style.setProperty('--bg-color', '#0d1b2a');
+                document.documentElement.style.setProperty('--text-color', '#e0e1dd');
+                document.documentElement.style.setProperty('--accent-color', '#1b263b');
+                themeToggle.textContent = "🌙";
+            }
+        });
+
+
+
+// Initialize the new cursor trail
+const trail = new ParticleTrail();
+
+// Typing Animation
+const titles = document.querySelectorAll('h1, h2');
+titles.forEach(title => {
+    const text = title.textContent;
+    title.textContent = '';
+    let i = 0;
+    
+    function typeWriter() {
+        if (i < text.length) {
+            title.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 100);
+        }
+    }
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                typeWriter();
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+    
+    observer.observe(title);
+});
+
+// Ripple Effect
+document.addEventListener('click', (e) => {
+    const ripple = document.createElement('div');
+    ripple.className = 'ripple';
+    ripple.style.left = `${e.clientX}px`;
+    ripple.style.top = `${e.clientY}px`;
+    document.body.appendChild(ripple);
+    
+    setTimeout(() => ripple.remove(), 1000);
+});
+
+// Add these styles to your existing CSS
+const styles = document.createElement('style');
+styles.textContent = `
+    .cursor-trail {
+        width: 20px;
+        height: 20px;
+        background: radial-gradient(circle, var(--primary-blue) 0%, transparent 70%);
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+    }
+    
+    .ripple {
+        position: fixed;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(0);
+        animation: ripple 1s linear;
+        pointer-events: none;
+    }
+    
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0px); }
+    }
+    
+
+    }
+`;
+document.head.appendChild(styles);
+
+    </script>
+</body>
+</html>

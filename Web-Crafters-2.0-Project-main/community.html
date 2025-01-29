@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .community-section {
+            background: rgba(13, 27, 42, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+
+        .discussion-board {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .study-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .group-card {
+            background: linear-gradient(145deg, #1e3a8a, #1e40af);
+            border-radius: 12px;
+            padding: 1.5rem;
+            color: white;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .group-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .live-chat {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1rem;
+            width: 300px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .mentor-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .mentor-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .mentor-card:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .achievement-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .badge {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00ff88, #00ffff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .badge::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2));
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+    </style>
+</head>
+<body>
+    <div class="community-section">
+        <h2>Learning Community</h2>
+        
+        <!-- Discussion Board -->
+        <div class="discussion-board">
+            <h3>Course Discussions</h3>
+            <div class="topic-list">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+
+        <!-- Study Groups -->
+        <div class="study-group">
+            <div class="group-card">
+                <h4>Web Development Group</h4>
+                <p>Members: 28</p>
+                <button class="join-btn">Join Group</button>
+            </div>
+            <!-- More group cards -->
+        </div>
+
+        <!-- Live Chat -->
+        <div class="live-chat">
+            <div class="chat-header">
+                <h4>Community Chat</h4>
+            </div>
+            <div class="chat-messages">
+                <!-- Dynamic messages -->
+            </div>
+            <input type="text" placeholder="Type your message...">
+        </div>
+
+        <!-- Mentor Section -->
+        <div class="mentor-section">
+            <div class="mentor-card">
+                <img src="/api/placeholder/100/100" alt="Mentor">
+                <h4>John Doe</h4>
+                <p>Full Stack Expert</p>
+            </div>
+            <!-- More mentor cards -->
+        </div>
+
+        <!-- Achievement Badges -->
+        <div class="achievement-badges">
+            <div class="badge" title="Quick Learner">🚀</div>
+            <div class="badge" title="Problem Solver">💡</div>
+            <div class="badge" title="Team Player">👥</div>
+            <!-- More badges -->
+        </div>
+    </div>
+
+    <script>
+        // Community Features JavaScript
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize discussion board
+            const topicList = document.querySelector('.topic-list');
+            const topics = [
+                { title: 'Getting Started with React', replies: 23 },
+                { title: 'Python Best Practices', replies: 15 },
+                // More topics
+            ];
+
+            topicList.innerHTML = topics.map(topic => `
+                <div class="topic">
+                    <h4>${topic.title}</h4>
+                    <span>${topic.replies} replies</span>
+                </div>
+            `).join('');
+
+            // Study group join functionality
+            document.querySelectorAll('.join-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.textContent = 'Joined';
+                    btn.disabled = true;
+                });
+            });
+
+            // Live chat functionality
+            const chatInput = document.querySelector('.live-chat input');
+            const chatMessages = document.querySelector('.chat-messages');
+
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && chatInput.value.trim()) {
+                    const message = document.createElement('div');
+                    message.className = 'message';
+                    message.textContent = chatInput.value;
+                    chatMessages.appendChild(message);
+                    chatInput.value = '';
+                }
+            });
+
+            // Achievement system
+            const badges = document.querySelectorAll('.badge');
+            badges.forEach(badge => {
+                badge.addEventListener('mouseover', () => {
+                    badge.style.transform = 'scale(1.2)';
+                });
+                badge.addEventListener('mouseout', () => {
+                    badge.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
